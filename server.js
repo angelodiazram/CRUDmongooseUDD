@@ -1,11 +1,18 @@
 import express from 'express';
+import { db } from './config/db.config.js';
+
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
-const PORT = 3000;
 
+// Midleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`);
+// conexion a mongo
+db()
+
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port: ${process.env.PORT}`);
 })
